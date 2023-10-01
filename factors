@@ -1,0 +1,50 @@
+#!/usr/bin/python3
+from sys import argv
+"""this function parse the file and the returns a list"""
+
+
+def parsefile(filename):
+    newList = []
+    with open(filename, 'r') as f:
+        data = f.readlines()
+    for x in data:
+        newList.append(int(x))
+    return newList
+
+
+"""this function check the prime number"""
+
+
+def checkprime(n):
+    for y in range(2, n+1):
+        if (y <= 3 or y == 5) and n % y == 0:
+            print("{}={}*{}".format(n, int(n/y), y))
+            break
+        elif y % 2 != 0 and y % 3 != 0 and y % 5 != 0:
+            if n % y == 0:
+                print("{}={}*{}".format(n, int(n/y), y))
+                break
+
+
+"""this function checks the square root"""
+
+
+def checksqrt(n):
+    s = int((n)**0.5)
+    if s <= 3 or s == 5:
+        print("{}={}*{}".format(x, s, s))
+    elif s % 2 != 0 and s % 3 != 0 and s % 5 != 0:
+        print("{}={}*{}".format(x, s, s))
+    else:
+        checkprime(n)
+
+
+if __name__ == "__main__":
+    if len(argv) != 2:
+        exit(1)
+    n = parsefile(argv[1])
+    for x in n:
+        if (x)**0.5 % 1 == 0:
+            checksqrt(x)
+        else:
+            checkprime(x)
